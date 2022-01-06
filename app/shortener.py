@@ -4,17 +4,18 @@ import string
 class URL_Shortener:
     # Dictionary database for mapping of long and short link
     url_map = {}
-    # taking ID from larger number to get 5-6 digit code
+
+    # taking ID from larger number to get 5-6 char code
     id = 999999999
 
     def shorten_url(self, original_url):
-        print("[DEBUG]", self.url_map)
-        # if url is already present
+        # print("[DEBUG]", self.url_map)
+
+        # Check if url is already present
         if original_url in self.url_map:
-            old_id = self.url_map[original_url]
-            shorten_url = self.encode(old_id)
+            shorten_url = self.url_map[original_url]
         else:
-            self.url_map[original_url] = str(self.id)
+            self.url_map[original_url] = self.id
             shorten_url = self.encode(self.id)
             self.id += 1
         return str(shorten_url)
