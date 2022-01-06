@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from flask_restful import Resource
 from flask import make_response, jsonify, request
+from flask_restful_swagger import swagger
 
 from shortener import URL_Shortener
 
@@ -10,9 +11,26 @@ shortener = URL_Shortener()
 
 
 class URLS(Resource):
+    @swagger.operation(
+        description="Decode Actual URL.",
+        nickname="decode_actual_url",
+        parameters=[
+            {
+                "name": "short_url",
+                "description": "short URL",
+                "required": True,
+                "dataType": "string",
+                "paramType": "path",
+            },
+        ],
+        responseMessages=[
+            {"code": 200, "message": "Successful response"},
+            {"code": 404, "message": "Invalid short URL"},
+        ],
+    )
     def get(self, short_url):
         """
-        GET Decoded URL
+        Get Decoded URL
         :param short_url: short URL / encoded URL generated from actual long URL
         """
         # access dictionary with reverse structure
@@ -37,9 +55,27 @@ class URLS(Resource):
 
 
 class URL(Resource):
+    @swagger.operation(
+        description="Create new encoded URL",
+        nickname="create_encoded_url",
+        parameters=[
+            {
+                "name": "body",
+                "description": "{\"long_url\":\"\"}",
+                "required": True,
+                "dataType": "URL",
+                "paramType": "body",
+            },
+        ],
+        responseMessages=[
+            {"code": 201, "message": "URL generated successfully."},
+            {"code": 404, "message": "Invalid short URL"},
+            {"code": 500, "message": "Internal Server Error"},
+        ],
+    )
     def post(self):
         """
-        Create new short URL
+        Create Encoded URL
         """
         try:
             payload = request.get_json()

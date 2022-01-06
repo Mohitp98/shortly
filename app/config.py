@@ -15,7 +15,7 @@ api = swagger.docs(
     resourcePath="/",
     produces=["application/json", "text/html"],
     api_spec_url="/api/spec",
-    description="Shortly URL Shortener Service",
+    description="Shortly | URL Shortener Service",
 )
 
 
