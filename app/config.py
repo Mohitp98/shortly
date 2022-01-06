@@ -4,6 +4,8 @@ from flask import Flask, jsonify, request
 from flask_restful import Api
 from flask_restful_swagger import swagger
 
+import constant
+
 app = Flask(__name__)
 
 api = swagger.docs(
@@ -21,4 +23,7 @@ api = swagger.docs(
 def invalid_route(e):
     """ Handling invalid routes"""
     path = request.path
-    return jsonify({"status": 404, "error": "Requested URL '{}'".format(path) + " not found on the server."}), HTTPStatus.NOT_FOUND
+    return jsonify({
+        constant.STATUS: 404,
+        constant.ERROR: "Requested URL '{}'".format(path) + " not found on the server."
+    }), HTTPStatus.NOT_FOUND
