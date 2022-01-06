@@ -1,8 +1,9 @@
 from config import app, api
-from api import URLS
+from api import URLS, URL
 
 # Endpoints and resources
-api.add_resource(URLS, '/api/test', endpoint='urls')
+api.add_resource(URLS, '/api/shortener/<short_url>', endpoint='urls')
+api.add_resource(URL, '/api/shortener', endpoint='url')
 
 # Provide run environment
 if __name__ == "__main__":
