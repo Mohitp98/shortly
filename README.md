@@ -1,2 +1,2 @@
 # shortly
-URL Shortner
+URL Shortener Service
