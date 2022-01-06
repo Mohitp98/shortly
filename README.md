@@ -37,6 +37,13 @@ $ cd app/
 $ python3 app.py
 ```
 
+### OR : Installation Using Docker Image
+
+Docker image is currently uploaded to docker hub here:- [mohitp98/shortly](https://hub.docker.com/repository/docker/mohitp98/shortly)
+
+```sh
+$ docker pull mohitp98/shortly:latest && docker run -d --publish 5000:5000 mohitp98/shortly:latest
+```
 
 ## Unit Testing
 **NOTE: All Unit Test cases are kept in [tests](tests) folder.**
